@@ -51,7 +51,7 @@ public class RobotContainer {
   private final Command m_spinWheel = new SpinWheel(m_colorWheel);
   
   // joysticks
-  Joystick m_joystick = new Joystick(0);
+  public static Joystick m_joystick = new Joystick(0);
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
