@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.commands.Drive;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.GrabHatch;
 import frc.robot.commands.SpinToBlue;
@@ -20,6 +21,7 @@ import frc.robot.commands.SpinToRed;
 import frc.robot.commands.SpinToYellow;
 import frc.robot.commands.SpinWheel;
 import frc.robot.subsystems.ColorWheel;
+import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Hatch;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -40,6 +42,7 @@ public class RobotContainer {
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   private final Hatch m_hatch = new Hatch();
   private final ColorWheel m_colorWheel = new ColorWheel();
+  private final DriveTrain m_driveTrain = new DriveTrain();
 
   // commands
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
@@ -49,6 +52,7 @@ public class RobotContainer {
   private final Command m_spinToGreen = new SpinToGreen(m_colorWheel);
   private final Command m_spinToYellow = new SpinToYellow(m_colorWheel);
   private final Command m_spinWheel = new SpinWheel(m_colorWheel);
+  public final Command m_drive = new Drive(m_driveTrain);
   
   // joysticks
   public static Joystick m_joystick = new Joystick(0);

@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.RobotContainer;
 
 public class DriveTrain extends SubsystemBase {
 
@@ -49,7 +50,9 @@ public class DriveTrain extends SubsystemBase {
 		right = (move + rotate) * greatestControl / greatestSpeed;
 		left = (-move + rotate) * greatestControl / greatestSpeed;
 		m_rightDrive.set(right);
-		m_leftDrive.set(left);
+    m_leftDrive.set(left);
+    
+    SmartDashboard.putNumber("Raw Axis", RobotContainer.m_joystick.getRawAxis(3));
 
 	}
 
