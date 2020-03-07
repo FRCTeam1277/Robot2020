@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.commands.Drive;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.GrabHatch;
 import frc.robot.commands.SpinToBlue;
@@ -22,6 +23,7 @@ import frc.robot.commands.SpinToYellow;
 import frc.robot.commands.SpinWheel;
 import frc.robot.subsystems.Camera;
 import frc.robot.subsystems.ColorWheel;
+import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Hatch;
 import frc.robot.subsystems.Shooter;
@@ -47,6 +49,7 @@ public class RobotContainer {
   // private final Hatch m_hatch = new Hatch();
   private final ColorWheel m_colorWheel = new ColorWheel(2);
   private final Shooter m_shooter = new Shooter(3);
+  private final DriveTrain m_driveTrain = new DriveTrain();
   // Create the camera.   This will not start the camera thread, call start to do that
   // private final Camera m_camera = new Camera();
   
@@ -58,9 +61,9 @@ public class RobotContainer {
   private final Command m_spinToGreen = new SpinToGreen(m_colorWheel);
   private final Command m_spinToYellow = new SpinToYellow(m_colorWheel);
   private final Command m_spinWheel = new SpinWheel(m_colorWheel);
-  
+  public final Command m_drive = new Drive(m_driveTrain);
   // joysticks
-  Joystick m_joystick = new Joystick(0);
+  public static Joystick m_joystick = new Joystick(0);
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
@@ -79,6 +82,7 @@ public class RobotContainer {
     SmartDashboard.putData("PDP", m_pdp);
 
     // Start the Camera
+
     // m_camera.start();
   }
 

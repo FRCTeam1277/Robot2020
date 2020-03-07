@@ -12,6 +12,8 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.commands.Drive;
+import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Hatch;
 
 /**
@@ -36,6 +38,7 @@ public class Robot extends TimedRobot {
     // and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
+    DriveTrain.front=-1;
   }
 
   /**
@@ -94,6 +97,7 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
+    m_robotContainer.m_drive.schedule();
   }
 
   /**
