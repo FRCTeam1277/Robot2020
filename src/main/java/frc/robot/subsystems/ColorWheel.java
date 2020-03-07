@@ -32,9 +32,9 @@ public class ColorWheel extends SubsystemBase {
   /**
    * Creates a new ColorWheel.
    */
-  public ColorWheel() {
+  public ColorWheel(int motor_channel) {
 
-    m_wheelMotor = new Spark(3);
+    m_wheelMotor = new Spark(motor_channel);   
     addChild("Wheel Motor", m_wheelMotor);
     SmartDashboard.putData(m_wheelMotor);
     m_wheelMotor.setInverted(false);

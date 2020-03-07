@@ -9,6 +9,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -19,9 +20,11 @@ import frc.robot.commands.SpinToGreen;
 import frc.robot.commands.SpinToRed;
 import frc.robot.commands.SpinToYellow;
 import frc.robot.commands.SpinWheel;
+import frc.robot.subsystems.Camera;
 import frc.robot.subsystems.ColorWheel;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Hatch;
+import frc.robot.subsystems.Shooter;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
@@ -36,14 +39,20 @@ public class RobotContainer {
 
   SendableChooser<Command> chooser = new SendableChooser<>();
 
+  // Monintoring
+  private final PowerDistributionPanel m_pdp = new PowerDistributionPanel();
+
   // subsystems
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
-  private final Hatch m_hatch = new Hatch();
-  private final ColorWheel m_colorWheel = new ColorWheel();
-
+  // private final Hatch m_hatch = new Hatch();
+  private final ColorWheel m_colorWheel = new ColorWheel(2);
+  private final Shooter m_shooter = new Shooter(3);
+  // Create the camera.   This will not start the camera thread, call start to do that
+  // private final Camera m_camera = new Camera();
+  
   // commands
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
-  private final Command m_grabHatch = new GrabHatch(m_hatch);
+  // private final Command m_grabHatch = new GrabHatch(m_hatch);
   private final Command m_spinToRed = new SpinToRed(m_colorWheel);
   private final Command m_spinToBlue = new SpinToBlue(m_colorWheel);
   private final Command m_spinToGreen = new SpinToGreen(m_colorWheel);
@@ -64,9 +73,13 @@ public class RobotContainer {
     chooser.addOption("Spin to Blue", m_spinToBlue);
     chooser.addOption("Spin to Green", m_spinToGreen);
     chooser.addOption("Spin to Yellow", m_spinToYellow);
-  
     SmartDashboard.putData("Chooser", chooser);
-  
+
+    // Set up the Power Distribution Module
+    SmartDashboard.putData("PDP", m_pdp);
+
+    // Start the Camera
+    // m_camera.start();
   }
 
   /**
@@ -78,8 +91,8 @@ public class RobotContainer {
 
   private void configureButtonBindings() {
 
-    new JoystickButton(m_joystick, 3)
-        .whenPressed(m_grabHatch);
+    // new JoystickButton(m_joystick, 3)
+    //     .whenPressed(m_grabHatch);
 
   }
 
