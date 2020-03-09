@@ -77,17 +77,17 @@ public class Camera extends SubsystemBase {
       
       CvSink cvSink = m_server.getVideo();
       CvSource outputStream = m_server.putVideo("Blur", 640, 480);
-      
-      Mat source = new Mat();
-      Mat output = new Mat();
-      SmartDashboard.putBoolean("Camera Running", true);
 
-      while(!Thread.interrupted()) {
-          cvSink.grabFrame(source);
+      // Make picture frames
+      // Mat source = new Mat();
+      // Mat output = new Mat();
+
+      //while(!Thread.interrupted()) {
+      //    cvSink.grabFrame(source);
           // Imgproc.cvtColor(source, output, Imgproc.COLOR_BGR2GRAY);
           // outputStream.putFrame(output);
-          outputStream.putFrame(source);
-      }
+          // outputStream.putFrame(source);
+      // }
     }).start();
   }
 }

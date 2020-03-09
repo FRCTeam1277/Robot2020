@@ -9,14 +9,19 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotContainer;
 
 public class DriveTrain extends SubsystemBase {
 
-  private static Spark m_leftDrive;
-  private static Talon m_rightDrive;
+  // Test Board
+  // private static Spark m_leftDrive = new Spark(0);
+  // private static Talon m_rightDrive = new Talon(1);
+  // Real Robot
+  private static VictorSP m_leftDrive  = new VictorSP(8);
+  private static VictorSP m_rightDrive = new VictorSP(9);
   public static int front = 1;
 	public static double right, left;
 
@@ -25,13 +30,11 @@ public class DriveTrain extends SubsystemBase {
    */
   public DriveTrain() {
 
-    m_leftDrive = new Spark(0);
     addChild("Left Drive", m_leftDrive);
     SmartDashboard.putData(m_leftDrive);
     m_leftDrive.setInverted(false);
     m_leftDrive.set(0);
 
-    m_rightDrive = new Talon(1);
     addChild("Right Drive", m_rightDrive);
     SmartDashboard.putData(m_rightDrive);
     m_rightDrive.setInverted(false);

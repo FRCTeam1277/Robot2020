@@ -105,7 +105,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
-    m_robotContainer.chooserCommand();
+    // m_robotContainer.chooserCommand();
   }
 
   @Override

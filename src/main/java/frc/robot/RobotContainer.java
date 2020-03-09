@@ -39,6 +39,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
 
+  // Smart Dashboard 
   SendableChooser<Command> chooser = new SendableChooser<>();
 
   // Monintoring
@@ -50,6 +51,7 @@ public class RobotContainer {
   private final ColorWheel m_colorWheel = new ColorWheel(2);
   private final Shooter m_shooter = new Shooter(3);
   private final DriveTrain m_driveTrain = new DriveTrain();
+  private final Camera m_camera = new Camera();
   // Create the camera.   This will not start the camera thread, call start to do that
   // private final Camera m_camera = new Camera();
   
@@ -81,9 +83,9 @@ public class RobotContainer {
     // Set up the Power Distribution Module
     SmartDashboard.putData("PDP", m_pdp);
 
+    
     // Start the Camera
-
-    // m_camera.start();
+    m_camera.start();
   }
 
   /**
@@ -94,7 +96,9 @@ public class RobotContainer {
    */
 
   private void configureButtonBindings() {
+    JoystickButton button12 = new JoystickButton(m_joystick,12);
 
+    button12.whenHeld(new SpinWheel(m_colorWheel));
     // new JoystickButton(m_joystick, 3)
     //     .whenPressed(m_grabHatch);
 

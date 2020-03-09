@@ -16,11 +16,17 @@ import edu.wpi.first.wpilibj.I2C;
 
 import com.revrobotics.ColorSensorV3;
 import com.revrobotics.ColorMatchResult;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import com.revrobotics.ColorMatch;
 
 public class ColorWheel extends SubsystemBase {
   
-  private Spark m_wheelMotor;
+  // Test Board
+  // private Spark m_wheelMotor;
+  // Real Robot
+  private final WPI_VictorSPX m_wheelMotor;
   private final I2C.Port i2cPort;
   private final ColorSensorV3 m_colorSensor;
   private final ColorMatch m_colorMatcher;
@@ -33,12 +39,13 @@ public class ColorWheel extends SubsystemBase {
    * Creates a new ColorWheel.
    */
   public ColorWheel(int motor_channel) {
-
-    m_wheelMotor = new Spark(motor_channel);   
+     m_wheelMotor = new  WPI_VictorSPX(23);
+   // m_wheelMotor = new Spark(motor_channel);   
     addChild("Wheel Motor", m_wheelMotor);
     SmartDashboard.putData(m_wheelMotor);
     m_wheelMotor.setInverted(false);
-    m_wheelMotor.set(0);
+    m_wheelMotor.set(ControlMode.PercentOutput, 0);
+    // m_wheelMotor.set(0);
 
     i2cPort = I2C.Port.kOnboard;
     m_colorSensor = new ColorSensorV3(i2cPort);
@@ -129,11 +136,11 @@ public class ColorWheel extends SubsystemBase {
   }
 
   public void run(){
-    m_wheelMotor.set(0.5);
+     m_wheelMotor.set(ControlMode.PercentOutput, -0.5);
   }
 
   public void wheelDisable(){
-    m_wheelMotor.set(0);
+     m_wheelMotor.set(ControlMode.PercentOutput, 0);
   }
 
 }
