@@ -27,6 +27,7 @@ import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Hatch;
 import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.Climber;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
@@ -52,6 +53,7 @@ public class RobotContainer {
   private final Shooter m_shooter = new Shooter(3);
   private final DriveTrain m_driveTrain = new DriveTrain();
   private final Camera m_camera = new Camera();
+  private final Climber m_climber = new Climber();
   // Create the camera.   This will not start the camera thread, call start to do that
   // private final Camera m_camera = new Camera();
   
@@ -83,7 +85,6 @@ public class RobotContainer {
     // Set up the Power Distribution Module
     SmartDashboard.putData("PDP", m_pdp);
 
-    
     // Start the Camera
     m_camera.start();
   }
